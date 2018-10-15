@@ -35,3 +35,8 @@ file(COPY ${OpenCV_patch}/apps/version/CMakeLists.txt
 file(COPY ${OpenCV_patch}/apps/visualisation/CMakeLists.txt
   DESTINATION ${OpenCV_source}/apps/visualisation
 )
+
+# Fix the MSVC Debug build failure when Python is enabled.
+file(COPY ${OpenCV_patch}/modules/python/src2/cv2.cpp
+  DESTINATION ${OpenCV_source}/modules/python/src2/
+)

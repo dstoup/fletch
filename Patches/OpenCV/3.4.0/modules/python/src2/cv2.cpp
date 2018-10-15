@@ -1,9 +1,68 @@
-#if defined(_MSC_VER) && (_MSC_VER >= 1800)
+
+#if defined(_DEBUG) && !defined(OCV_WINDOWS_PYTHON_DEBUGGABLE)
+# define OCV_PYTHON_UNDEF_DEBUG
+// Include these low level headers before undefing _DEBUG. Otherwise when doing
+// a debug build against a release build of python the compiler will end up
+// including these low level headers without DEBUG enabled, causing it to try
+// and link release versions of this low level C api.
+# include <basetsd.h>
+# include <assert.h>
+# include <ctype.h>
+# include <errno.h>
+# include <io.h>
+# include <math.h>
+# include <stdarg.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/stat.h>
+# include <time.h>
+# include <wchar.h>
+# undef _DEBUG
+# if defined(_MSC_VER)
+#  define _CRT_NOFORCE_MANIFEST 1
+# endif
+#endif
+
+/* We used to try to #undef feature macros that Python.h defines
+to avoid re-definition warnings.  However, such warnings usually
+indicate a violation of Python's documented inclusion policy:
+
+ "Since Python may define some pre-processor definitions which
+  affect the standard headers on some systems, you must include
+  Python.h before any standard headers are included."
+ (http://docs.python.org/c-api/intro.html#include-files)
+
+To avoid re-definitions warnings, ensure "vtkPython.h" is included
+before _any_ headers that define feature macros, whether or not
+they are system headers.  Do NOT add any #undef lines here.  */
+
+#if defined(_MSC_VER)
+# pragma warning (push, 1)
+#endif
+
+#if defined(_MSC_VER) && _MSC_VER >= 1800
 // eliminating duplicated round() declaration
 #define HAVE_ROUND 1
 #endif
 
 #include <Python.h>
+
+#if defined(_MSC_VER) && _MSC_VER >= 1800
+#undef HAVE_ROUND
+#endif
+
+#if defined(_MSC_VER)
+# pragma warning (pop)
+#endif
+
+#ifdef OCV_PYTHON_UNDEF_DEBUG
+# define _DEBUG 1
+# undef OCV_PYTHON_UNDEF_DEBUG
+#endif
+
+
 
 #define MODULESTR "cv2"
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
