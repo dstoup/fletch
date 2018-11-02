@@ -280,10 +280,10 @@ endif()
 
 # HDF5
 set(HDF5_major "1.10")
-set(HDF5_rev "1")
+set(HDF5_rev "4")
 set(HDF5_version "${HDF5_major}.${HDF5_rev}")
 set(HDF5_url "https://support.hdfgroup.org/ftp/HDF5/prev-releases/hdf5-${HDF5_major}/hdf5-${HDF5_version}/src/hdf5-${HDF5_version}.tar")
-set(HDF5_md5 "07feb416b3f9c3dc82595bbe0f078669")
+set(HDF5_md5 "2da0999d6633f94a382f38884796accd")
 list(APPEND fletch_external_sources HDF5)
 
 # SNAPPY
