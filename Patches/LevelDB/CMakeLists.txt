@@ -42,11 +42,11 @@ if(WIN32 AND MSVC)
 
   set(LIBS "${LIBS}" shlwapi)
 
-elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND CMAKE_COMPILER_IS_GNUCXX)
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
   # Older gcc versions on certain compilers don't have __STDC_LIMIT_MACROS define
   # and can't use MAX_SIZE as a result.
-  if (NOT ${CMAKE_CXX_COMPILER_VERSION} VERSION_GREATER 4.6)
+  if (CMAKE_COMPILER_IS_GNUCXX AND NOT ${CMAKE_CXX_COMPILER_VERSION} VERSION_GREATER 4.6)
     add_definitions(-D__STDC_LIMIT_MACROS)
   endif()
 
