@@ -143,7 +143,12 @@ add_package_dependency(
   PACKAGE_DEPENDENCY_ALIAS ZLIB
 )
 if(NOT ZLIB_FOUND)
-  get_system_library_name(zlib zlib_lib)
+  if(NOT WIN32)
+    get_system_library_name(z zlib_lib)
+  else()
+    get_system_library_name(zlib zlib_lib)
+  endif()
+
   set(ZLIB_INCLUDE_DIRS ${install_include_dir})
   set(ZLIB_LIBRARIES ${install_library_dir}/${zlib_lib})
 endif()

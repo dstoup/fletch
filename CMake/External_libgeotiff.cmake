@@ -68,7 +68,12 @@ add_package_dependency(
 )
 if (libgeotiff_WITH_zlib)
   if(NOT ZLIB_FOUND)
-    get_system_library_name(zlib zlib_lib)
+    if(NOT WIN32)
+      get_system_library_name(z zlib_lib)
+    else()
+      get_system_library_name(zlib zlib_lib)
+    endif()
+
     set(ZLIB_INCLUDE_DIR ${fletch_BUILD_INSTALL_PREFIX}/include)
     set(ZLIB_LIBRARY ${fletch_BUILD_INSTALL_PREFIX}/lib/${zlib_lib})
   endif()

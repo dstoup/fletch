@@ -6,10 +6,13 @@ add_package_dependency(
   )
 
 if(fletch_ENABLE_ZLib)
-  get_system_library_name( zlib zlib_libname )
-  set( HDF5_ZLIB_ARGS "-DZLIB_LIBRARY_RELEASE:PATH=${ZLIB_ROOT}/lib/${zlib_libname}"
+  if(NOT WIN32)
+    get_system_library_name(z zlib_lib)
+  else()
+    get_system_library_name(zlib zlib_lib)
+  endif()
+  set( HDF5_ZLIB_ARGS "-DZLIB_LIBRARY_RELEASE:PATH=${ZLIB_ROOT}/lib/${zlib_lib}"
     "-DZLIB_INCLUDE_DIR:PATH=${ZLIB_ROOT}/include")
-
 endif()
 
 ExternalProject_Add(HDF5
