@@ -89,18 +89,9 @@ else ()
     --enable-rpath
     )
 
-  if (_FFmpeg_version VERSION_LESS 3.3.0)
-    # memalign-hack is only needed for windows and older versions of ffmpeg
-    list(APPEND FFMPEG_CONFIGURE_COMMAND --enable-memalign-hack)
-    # bzlib errors if not found in newer versions (previously it did not)
-    list(APPEND FFMPEG_CONFIGURE_COMMAND --enable-bzlib)
-    list(APPEND FFMPEG_CONFIGURE_COMMAND --enable-outdev=sdl)
-  endif()
-
   if(APPLE)
     list(APPEND FFMPEG_CONFIGURE_COMMAND --sysroot=${CMAKE_OSX_SYSROOT} --disable-doc)
   endif()
-
 
   Fletch_Require_Make()
   ExternalProject_Add(FFmpeg
