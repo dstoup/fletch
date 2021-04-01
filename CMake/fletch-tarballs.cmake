@@ -363,6 +363,12 @@ set(libgeotiff_url "http://download.osgeo.org/geotiff/libgeotiff/libgeotiff-${li
 set(libgeotiff_md5 "c72c682c5972a5cf8c3f655567761a17")
 list(APPEND fletch_external_sources libgeotiff)
 
+# GEOS
+set(GEOS_version "3.8.1" )
+set(GEOS_url "http://download.osgeo.org/geos/geos-${GEOS_version}.tar.bz2" )
+set(GEOS_md5 "9d25df02a2c4fcc5a59ac2fb3f0bd977" )
+list(APPEND fletch_external_sources GEOS )
+
 # GDAL
 if (fletch_ENABLE_GDAL OR fletch_ENABLE_ALL_PACKAGES)
   set(GDAL_SELECT_VERSION 2.3.2 CACHE STRING "Select the major version of GDAL to build.")
@@ -382,12 +388,6 @@ if (fletch_ENABLE_GDAL OR fletch_ENABLE_ALL_PACKAGES)
 endif()
 list(APPEND fletch_external_sources GDAL)
 
-# GEOS
-set(GEOS_version "3.8.1" )
-set(GEOS_url "http://download.osgeo.org/geos/geos-${GEOS_version}.tar.bz2" )
-set(GEOS_md5 "9d25df02a2c4fcc5a59ac2fb3f0bd977" )
-list(APPEND fletch_external_sources GEOS )
-
 # PDAL
 set(PDAL_version 1.7.2)
 set(PDAL_url "https://github.com/PDAL/PDAL/releases/download/${PDAL_version}/PDAL-${PDAL_version}-src.tar.gz")
@@ -402,18 +402,18 @@ list(APPEND fletch_external_sources GeographicLib )
 
 # PostgreSQL
 if (fletch_ENABLE_PostgreSQL OR fletch_ENABLE_ALL_PACKAGES)
-  set(PostgreSQL_SELECT_VERSION 12.3 CACHE STRING "Select the major version of PostgreSQL to build.")
-  set_property(CACHE PostgreSQL_SELECT_VERSION PROPERTY STRINGS "9.5.1" "12.3")
+  set(PostgreSQL_SELECT_VERSION 13.2 CACHE STRING "Select the major version of PostgreSQL to build.")
+  set_property(CACHE PostgreSQL_SELECT_VERSION PROPERTY STRINGS "9.5.1" "13.2")
   message(STATUS "PostgreSQL Select version: ${PostgreSQL_SELECT_VERSION}")
 
   if (PostgreSQL_SELECT_VERSION VERSION_EQUAL 9.5.1)
     # PostgreSQL 9.5
     set(PostgreSQL_version ${PostgreSQL_SELECT_VERSION})
     set(PostgreSQL_md5 "11e037afaa4bd0c90bb3c3d955e2b401")
-  elseif(PostgreSQL_SELECT_VERSION VERSION_EQUAL 12.3)
+  elseif(PostgreSQL_SELECT_VERSION VERSION_EQUAL 13.2)
     # PostgreSQL 12.3
     set(PostgreSQL_version ${PostgreSQL_SELECT_VERSION})
-    set(PostgreSQL_md5 "a30c023dd7088e44d73be71af2ef404a")
+    set(PostgreSQL_md5 "c7b352c2774d6c3e03bd2558c03da876")
   else()
     message(STATUS "PostgreSQL_SELECT_VERSION: Not supported")
   endif()
