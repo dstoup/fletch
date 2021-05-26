@@ -11,3 +11,11 @@ file(COPY ${VXL_PATCH_DIR}/core/vbl/vbl_array_2d.h
 file(COPY ${VXL_PATCH_DIR}/v3p/openjpeg2/opj_includes.h
   DESTINATION ${VXL_SOURCE_DIR}/v3p/openjpeg2/
 )
+
+# Patches vgl_box_2d to provide exports
+file(COPY ${VXL_PATCH_DIR}/core/vgl/vgl_box_2d.h
+  DESTINATION ${VXL_SOURCE_DIR}/core/vgl/
+)
+file(COPY ${VXL_PATCH_DIR}/core/vgl/vgl_box_2d.hxx
+  DESTINATION ${VXL_SOURCE_DIR}/core/vgl/
+)
