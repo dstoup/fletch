@@ -32,6 +32,8 @@
 #include <vcl_compiler.h>
 #include <vgl/vgl_fwd.h> // forward declare vgl_point_2d
 
+#include "vgl/vgl_export.h"
+
 //: Represents a cartesian 2D box
 //  A 2d box with sides aligned with the \a x and \a y axes.
 //  Also supports operations required of a bounding box for geometric region

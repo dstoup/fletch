@@ -381,7 +381,7 @@ std::istream& operator>>(std::istream& is, vgl_box_2d<Type>& p)
 #undef VGL_BOX_2D_INSTANTIATE
 #define VGL_BOX_2D_INSTANTIATE(Type) \
 template class vgl_box_2d<Type >;\
-template std::istream& operator>>(std::istream&, vgl_box_2d<Type >&);\
-template std::ostream& operator<<(std::ostream&, vgl_box_2d<Type > const&)
+template VGL_EXPORT std::istream& operator>>(std::istream&, vgl_box_2d<Type >&);\
+template VGL_EXPORT std::ostream& operator<<(std::ostream&, vgl_box_2d<Type > const&)
 
 #endif // vgl_box_2d_hxx_
